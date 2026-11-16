@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+     <meta name="viewport" content="width=device-width,initial-scale=1">
+	<title> Automated CV Creating Assistant </title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-info" data-bs-theme="light">
+		<div class="container-fluid">
+			<img src="images/CareerCraft.png" class="navbar-brand" width="200" alt="CareerCraft">
+			<button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-label="Toggle menu">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="menu">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link active" href="#Introduction">About Us</a></li>
+					<li class="nav-item"><a class="nav-link" href="#Registration">Register Now</a></li>		
+				</ul>
+			</div>	
+		</div>
+	</nav>
+	<div id="Introduction" class="align-items-center">
+		<h2 class="text-dark text-center fst-italic">About Us</h2>
+		<p class="text-dark text-center fw-bold">CareerCraft helps you turn your work experience, skills, and education into a clear, professional CV. 
+							 Whether you are applying for your first job, looking for a new opportunity, or updating an older CV, 
+							 CareerCraft guides you through the process one step at a time.<br><br>
+							 Enter your details, choose the kind of role you want, and CareerCraft can help organize your information 
+							 into a polished draft. It can also help improve the wording of your experience so employers can quickly 
+							 understand what you have done and what you can offer. You stay in control: review every section, make changes, 
+							 and check that all the details are correct before using your CV.<br><br>
+							 You can start by typing your information or pasting details from your LinkedIn profile. CareerCraft uses what 
+							 you provide to create a draft; it should never add jobs, skills, or qualifications you don’t have.<br><br>
+							 Our goal is to make CV writing feel simpler and less stressful. CareerCraft gives you a helpful starting point, 
+							 so you can spend less time worrying about formatting and more time preparing for the opportunities ahead.</p>
+	</div>
+	<br><br>
+	<div id="Registration" class="align-items-center">
+		<div class="container col-12 col-lg-6 mb-5">
+			<div class="card mx-auto">
+				<div class="card-body">
+					<h3 class="h4 mb-3 fst-italic text-center">Registration:</h3>
+					<form id="order-form" class="needs-validation">
+						<div class="mb-3">
+							<label for="user-email" class="form-label">Email:</label>
+							<input type="email" class="form-control" id="user-email" placeholder="Enter your email" required>
+							<div class="invalid-feedback">Please enter your name.</div>
+						</div>
+						<div class="mb-3">
+							<label for="username" class="form-label">Username:</label>
+							<input type="text" class="form-control" id="username" placeholder="Enter your username" minlength="5" required>
+							<div class="form-text">Enter atleast 5 characters</div>
+							<div class="invalid-feedback">Enter a valid username</div>
+						</div>
+						<div class="mb-3">
+							<label for="password" class="form-label">Password:</label>
+							<input type="password" class="form-control" id="password" placeholder="Enter your password" minlength="8" required>
+							<div class="form-text">Enter atleast 8 characters</div>
+							<div class="invalid-feedback">Please enter your password</div>
+						</div>
+						<button id="Register" type="submit" class="btn btn-info">
+							<span	id="order-spinner"	class="spinner-border spinner-border-sm me-2 d-none" aria-hidden="true"></span>
+							<span id="order-button-text">Register</span>
+						</button>
+						<button type="reset" class="btn btn-outline-secondary">Clear</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("order-form");
+  const emailInput = document.getElementById("user-email");
+  const usernameInput = document.getElementById("username");
+  const passwordInput = document.getElementById("password");
+  const submitButton = document.getElementById("Register");
+  const spinner = document.getElementById("order-spinner");
+  const buttonText = document.getElementById("order-button-text");
+
+  if (!form || !emailInput || !usernameInput || !passwordInput) {
+    console.error("Registration form elements were not found.");
+    return;
+  }
+
+  // The browser's built-in checks cover required fields, email format,
+  // and the minlength attributes in your HTML.
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      event.stopPropagation();
+      form.classList.add("was-validated");
+      form.reportValidity();
+      return;
+    }
+
+    form.classList.add("was-validated");
+
+    // This is only a front-end demonstration. Connect this section to a
+    // server endpoint to actually register and store an account.
+    submitButton.disabled = true;
+    spinner?.classList.remove("d-none");
+    if (buttonText) buttonText.textContent = "Registering…";
+
+    window.setTimeout(() => {
+      spinner?.classList.add("d-none");
+      if (buttonText) buttonText.textContent = "Register";
+      submitButton.disabled = false;
+
+      alert(`Registration form is valid for ${emailInput.value.trim()}.`);
+      form.reset();
+      form.classList.remove("was-validated");
+    }, 800);
+  });
+
+  form.addEventListener("reset", () => {
+    // Let the browser reset the fields first, then clear validation styling.
+    window.setTimeout(() => {
+      form.classList.remove("was-validated");
+      spinner?.classList.add("d-none");
+      if (buttonText) buttonText.textContent = "Register";
+      if (submitButton) submitButton.disabled = false;
+    }, 0);
+  });
+});
+</script>
+</body>
+</html>
