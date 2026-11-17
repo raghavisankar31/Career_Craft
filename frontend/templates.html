@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Explore CV Templates - CareerCraft</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+	<!-- Google Fonts for Distinct Template Typography -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Merriweather:wght@400;700&family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+	<style>
+		body {
+			background: linear-gradient(rgba(10, 12, 16, 0.84), rgba(10, 12, 16, 0.94)), url('images/bg.jpg');
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			min-height: 100vh;
+			color: #f8f9fa;
+			font-family: 'Inter', sans-serif;
+		}
+
+		/* Glass Navbar & Top Dropdown Drawer */
+		.modern-navbar {
+			background: rgba(18, 22, 30, 0.85);
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+			border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		}
+
+		.top-dropdown-drawer {
+			background: linear-gradient(180deg, #11151c 0%, #1a202c 100%);
+			border-bottom: 1px solid rgba(56, 189, 248, 0.3);
+			height: auto !important;
+			padding-bottom: 1.5rem;
+		}
+
+		.drawer-link {
+			color: #cbd5e1;
+			font-size: 1.15rem;
+			font-weight: 500;
+			padding: 0.75rem 1.25rem;
+			border-radius: 0.5rem;
+			transition: all 0.2s ease;
+			text-decoration: none;
+			display: block;
+		}
+
+		.drawer-link:hover, .drawer-link.active {
+			background: rgba(56, 189, 248, 0.15);
+			color: #38bdf8;
+			transform: translateX(4px);
+		}
+
+		/* Template Gallery Cards */
+		.template-card {
+			background: rgba(24, 29, 39, 0.92);
+			border: 1px solid rgba(255, 255, 255, 0.12);
+			border-radius: 1rem;
+			overflow: hidden;
+			transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+		}
+
+		.template-card:hover {
+			transform: translateY(-6px);
+			border-color: #38bdf8;
+			box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+		}
+
+		/* Base Mini Paper Preview */
+		.cv-thumbnail {
+			height: 310px;
+			padding: 16px;
+			font-size: 0.68rem;
+			line-height: 1.38;
+			overflow: hidden;
+			position: relative;
+			user-select: none;
+		}
+
+		/* ================= 8 DISTINCT TEMPLATE THEMES ================= */
+
+		/* 1. ATS Classic (Crisp White + Merriweather Serif) */
+		.theme-ats-classic {
+			background: #ffffff;
+			color: #111827;
+			font-family: 'Merriweather', serif;
+		}
+		.theme-ats-classic h6 {
+			font-size: 0.72rem;
+			border-bottom: 1.5px solid #111827;
+			padding-bottom: 2px;
+			margin-top: 8px;
+			text-transform: uppercase;
+			letter-spacing: 0.6px;
+		}
+
+		/* 2. ATS Modern Slate (Cool Soft Gray Tint + Inter Sans) */
+		.theme-ats-slate {
+			background: #f1f5f9;
+			color: #0f172a;
+			font-family: 'Inter', sans-serif;
+			border-top: 6px solid #334155;
+		}
+		.theme-ats-slate h6 {
+			font-size: 0.72rem;
+			background: #e2e8f0;
+			color: #1e293b;
+			padding: 3px 6px;
+			font-weight: 700;
+			text-transform: uppercase;
+			margin-top: 8px;
+		}
+
+		/* 3. Split Developer (Navy Sidebar + Clean White + JetBrains Mono) */
+		.theme-tech-split {
+			background: #ffffff;
+			color: #1e293b;
+			font-family: 'Inter', sans-serif;
+			display: grid;
+			grid-template-columns: 36% 64%;
+			gap: 10px;
+			padding: 0;
+		}
+		.theme-tech-split .left-col {
+			background: #0f172a;
+			color: #e2e8f0;
+			padding: 14px 10px;
+			height: 100%;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.62rem;
+		}
+		.theme-tech-split .right-col {
+			padding: 14px 12px 14px 0;
+		}
+
+		/* 4. Dark Terminal Tech (Dark Charcoal Paper + Cyan/Green Code Font) */
+		.theme-tech-dark {
+			background: #131722;
+			color: #cbd5e1;
+			font-family: 'JetBrains Mono', monospace;
+			border-left: 4px solid #10b981;
+		}
+		.theme-tech-dark h6 {
+			color: #10b981;
+			font-size: 0.72rem;
+			margin-top: 8px;
+		}
+
+		/* 5. Creative Coral & Sand (Warm Cream Paper + Coral Banner + Poppins) */
+		.theme-creative-coral {
+			background: #fffaf5;
+			color: #292524;
+			font-family: 'Poppins', sans-serif;
+		}
+		.theme-creative-coral .cv-banner {
+			background: linear-gradient(135deg, #f43f5e, #fb923c);
+			color: #ffffff;
+			padding: 10px 12px;
+			margin: -16px -16px 10px -16px;
+		}
+		.theme-creative-coral h6 {
+			color: #e11d48;
+			font-weight: 700;
+			font-size: 0.72rem;
+			margin-top: 8px;
+		}
+
+		/* 6. Creative Indigo Studio (Soft Lavender Tint + Royal Indigo Accent) */
+		.theme-creative-indigo {
+			background: #eef2ff;
+			color: #1e1b4b;
+			font-family: 'Poppins', sans-serif;
+			border-top: 8px solid #4f46e5;
+		}
+		.theme-creative-indigo h6 {
+			color: #4338ca;
+			border-bottom: 1px dashed #818cf8;
+			padding-bottom: 2px;
+			font-size: 0.72rem;
+			font-weight: 700;
+			margin-top: 8px;
+		}
+
+		/* 7. Executive Emerald & Ivory (Warm Ivory Paper + Deep Emerald + Playfair Display) */
+		.theme-exec-emerald {
+			background: #fdfbf7;
+			color: #1c1917;
+			font-family: 'Inter', sans-serif;
+		}
+		.theme-exec-emerald .exec-header {
+			background: #064e3b;
+			color: #ecfdf5;
+			padding: 12px;
+			margin: -16px -16px 10px -16px;
+			font-family: 'Playfair Display', serif;
+		}
+		.theme-exec-emerald h6 {
+			color: #065f46;
+			font-family: 'Playfair Display', serif;
+			font-weight: 700;
+			font-size: 0.78rem;
+			border-bottom: 1px solid #a7f3d0;
+			margin-top: 8px;
+		}
+
+		/* 8. Fresher Sky Minimal (Crisp White + Sky Blue Left Accent + Poppins) */
+		.theme-fresher-sky {
+			background: #ffffff;
+			color: #334155;
+			font-family: 'Poppins', sans-serif;
+			border-left: 6px solid #0284c7;
+		}
+		.theme-fresher-sky h6 {
+			color: #0284c7;
+			font-weight: 700;
+			font-size: 0.72rem;
+			text-transform: uppercase;
+			margin-top: 8px;
+		}
+
+		/* Full Modal CV Paper */
+		.cv-full-paper {
+			padding: 2.2rem;
+			border-radius: 0.5rem;
+			min-height: 560px;
+			font-size: 0.95rem;
+			line-height: 1.5;
+		}
+		.cv-full-paper.theme-tech-split {
+			padding: 0;
+			overflow: hidden;
+		}
+		.cv-full-paper.theme-tech-split .left-col {
+			padding: 2rem 1.4rem;
+			font-size: 0.85rem;
+		}
+		.cv-full-paper.theme-tech-split .right-col {
+			padding: 2rem 1.8rem 2rem 0.5rem;
+		}
+		.cv-full-paper .cv-banner,
+		.cv-full-paper .exec-header {
+			margin: -2.2rem -2.2rem 1.2rem -2.2rem;
+			padding: 1.5rem 2.2rem;
+		}
+
+		/* Print Only the Selected CV */
+		@media print {
+			body * {
+				visibility: hidden;
+			}
+			#modalPreviewContainer, #modalPreviewContainer * {
+				visibility: visible;
+			}
+			#modalPreviewContainer {
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100%;
+				box-shadow: none !important;
+			}
+		}
+	</style>
+</head>
+<body>
+
+	<!-- Sleek Top Header Bar -->
+	<nav class="navbar modern-navbar sticky-top py-2">
+		<div class="container">
+			<a class="navbar-brand d-flex align-items-center" href="index.html">
+				<img src="images/CareerCraft.png" width="180" alt="CareerCraft">
+			</a>
+
+			<button class="btn btn-outline-info d-flex align-items-center gap-2 px-3 py-2" 
+					type="button" 
+					data-bs-toggle="offcanvas" 
+					data-bs-target="#topDropdownMenu" 
+					aria-controls="topDropdownMenu">
+				<span class="fw-semibold">Menu</span>
+				<span class="navbar-toggler-icon" style="filter: invert(1); width: 1.1em; height: 1.1em;"></span>
+			</button>
+		</div>
+	</nav>
+
+	<!-- Matching Top Dropdown Menu -->
+	<div class="offcanvas offcanvas-top top-dropdown-drawer text-light" tabindex="-1" id="topDropdownMenu" aria-labelledby="topDropdownLabel">
+		<div class="container">
+			<div class="offcanvas-header px-0 border-bottom border-secondary border-opacity-25">
+				<h5 class="offcanvas-title text-info fw-bold" id="topDropdownLabel">Navigation</h5>
+				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body px-0 pt-3">
+				<div class="row g-2">
+					<div class="col-12 col-md-4">
+						<a class="drawer-link" href="index.html#Introduction">About Us</a>
+					</div>
+					<div class="col-12 col-md-4">
+						<a class="drawer-link" href="index.html#Registration">Register Now</a>
+					</div>
+					<div class="col-12 col-md-4">
+						<a class="drawer-link active" href="templates.html">Explore CV Templates</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Header & Expanded Category Filter Buttons -->
+	<div class="container py-5">
+		<div class="text-center mb-4">
+			<h1 class="fw-bold text-info">Choose Your CV Template</h1>
+			<p class="text-light opacity-75">Explore layouts with tailored typography, color palettes, and structures for every industry.</p>
+		</div>
+
+		<!-- Role/Interest Filter Pills -->
+		<div class="d-flex flex-wrap justify-content-center gap-2 mb-5" id="filter-buttons">
+			<button class="btn btn-info btn-sm px-3 fw-semibold filter-btn active" data-category="all">All Templates (8)</button>
+			<button class="btn btn-outline-info btn-sm px-3 filter-btn" data-category="ats">ATS Friendly</button>
+			<button class="btn btn-outline-info btn-sm px-3 filter-btn" data-category="tech">Tech & Engineering</button>
+			<button class="btn btn-outline-info btn-sm px-3 filter-btn" data-category="creative">Creative & Design</button>
+			<button class="btn btn-outline-info btn-sm px-3 filter-btn" data-category="executive">Executive & Corporate</button>
+			<button class="btn btn-outline-info btn-sm px-3 filter-btn" data-category="fresher">Student / Fresher</button>
+		</div>
+
+		<!-- Templates Grid -->
+		<div class="row g-4" id="templates-grid">
+
+			<!-- 1. ATS Classic -->
+			<div class="col-12 col-md-6 col-lg-3 template-item" data-category="ats">
+				<div class="template-card h-100 d-flex flex-column">
+					<div class="cv-thumbnail theme-ats-classic" id="tpl-ats-1">
+						<div class="text-center mb-2">
+							<strong style="font-size: 0.9rem;">AARAV SHARMA</strong><br>
+							<span class="text-muted">Bengaluru • aarav@email.com • +91 98765 43210</span>
+						</div>
+						<h6>Summary</h6>
+						<p class="mb-1">Operations Analyst with 4+ years optimizing supply chains and ERP workflows.</p>
+						<h6>Experience</h6>
+						<p class="mb-1"><strong>Senior Analyst — LogiCore</strong> (2023–Present)<br>• Cut dispatch delays by 18% using SQL dashboards.</p>
+						<h6>Education</h6>
+						<p class="mb-0">B.Com (Hons), Christ University</p>
+					</div>
+					<div class="p-3 d-flex flex-column flex-grow-1 justify-content-between">
+						<div>
+							<span class="badge bg-info text-dark mb-2">ATS Friendly • Serif</span>
+							<h5 class="fw-bold mb-1">Ivy League Classic</h5>
+							<p class="small text-secondary mb-3">Crisp white paper with Merriweather serif typography. Passes 100% of automated ATS parsers.</p>
+						</div>
+						<button class="btn btn-outline-info w-100 btn-sm fw-semibold preview-btn" data-template="tpl-ats-1" data-title="Ivy League Classic">Preview & Edit</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- 2. ATS Modern Slate -->
+			<div class="col-12 col-md-6 col-lg-3 template-item" data-category="ats">
+				<div class="template-card h-100 d-flex flex-column">
+					<div class="cv-thumbnail theme-ats-slate" id="tpl-ats-2">
+						<div>
+							<strong style="font-size: 0.95rem;">MEERA KRISHNAN</strong><br>
+							<span class="text-muted">Chennai • Product Manager • meera.k@email.com</span>
+						</div>
+						<h6>Core Competencies</h6>
+						<p class="mb-1">Agile Scrum • Roadmap Planning • A/B Testing • User Stories</p>
+						<h6>Work Experience</h6>
+						<p class="mb-1"><strong>Product Owner — FinEdge</strong> (2024–Present)<br>• Led UPI checkout revamp for 1.2M monthly active users.</p>
+						<h6>Education</h6>
+						<p class="mb-0">MBA, IIM Kozhikode</p>
+					</div>
+					<div class="p-3 d-flex flex-column flex-grow-1 justify-content-between">
+						<div>
+							<span class="badge bg-info text-dark mb-2">ATS Friendly • Sans-Serif</span>
+							<h5 class="fw-bold mb-1">Nordic Slate ATS</h5>
+							<p class="small text-secondary mb-3">Cool slate-gray paper tint with clean Inter typography and shaded section headers.</p>
+						</div>
+						<button class="btn btn-outline-info w-100 btn-sm fw-semibold preview-btn" data-template="tpl-ats-2" data-title="Nordic Slate ATS">Preview & Edit</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- 3. Tech Split Developer -->
+			<div class="col-12 col-md-6 col-lg-3 template-item" data-category="tech">
+				<div class="template-card h-100 d-flex flex-column">
+					<div class="cv-thumbnail theme-tech-split" id="tpl-tech-1">
+						<div class="left-col">
+							<strong style="font-size: 0.85rem; color: #fff;">PRIYA NAIR</strong><br>
+							<span style="color: #38bdf8;">Full-Stack Dev</span>
+							<hr class="my-2 border-secondary">
+							<strong>STACK</strong><br>
+							• React / Next.js<br>
+							• Node / Python<br>
+							• PostgreSQL<br>
+							• Docker / AWS<br><br>
+							<strong>LINKS</strong><br>
+							github.com/priya
+						</div>
+						<div class="right-col">
+							<strong class="text-uppercase text-primary">Profile</strong>
+							<p class="mb-2">Full-stack engineer building low-latency microservices and modern UIs.</p>
+							<strong class="text-uppercase text-primary">Projects</strong>
+							<p class="mb-2"><strong>CareerCraft Engine</strong><br>Built template renderer & PDF exporter.</p>
+							<strong class="text-uppercase text-primary">Education</strong>
+							<p class="mb-0">B.Tech CSE, Anna University</p>
+						</div>
+					</div>
+					<div class="p-3 d-flex flex-column flex-grow-1 justify-content-between">
+						<div>
+							<span class="badge bg-primary mb-2">Tech • Two-Tone</span>
+							<h5 class="fw-bold mb-1">Split Stack Engineer</h5>
+							<p class="small text-secondary mb-3">Deep navy monospace sidebar paired with a crisp white project showcase column.</p>
+						</div>
+						<button class="btn btn-outline-info w-100 btn-sm fw-semibold preview-btn" data-template="tpl-tech-1" data-title="Split Stack Engineer">Preview & Edit</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- 4. Tech Dark Terminal -->
+			<div class="col-12 col-md-6 col-lg-3 template-item" data-category="tech">
+				<div class="template-card h-100 d-flex flex-column">
+					<div class="cv-thumbnail theme-tech-dark" id="tpl-tech-2">
+						<div>
+							<strong style="font-size: 0.9rem; color: #fff;">&gt; VIKRAM RAO_</strong><br>
+							<span style="color: #10b981;">DevOps & Cloud Architect</span>
+						</div>
+						<h6>// SUMMARY</h6>
+						<p class="mb-1">Automating Kubernetes clusters and CI/CD pipelines with 99.98% uptime.</p>
+						<h6>// EXPERIENCE</h6>
+						<p class="mb-1"><strong class="text-white">SRE Lead @ CloudScale</strong><br>• Reduced AWS bill by 32% via Terraform spot instances.</p>
+						<h6>// CERTIFICATIONS</h6>
+						<p class="mb-0">CKA • AWS Solutions Architect</p>
+					</div>
+					<div class="p-3 d-flex flex-column flex-grow-1 justify-content-between">
+						<div>
+							<span class="badge bg-primary mb-2">Tech • Dark Mode</span>
+							<h5 class="fw-bold mb-1">Cyber Terminal</h5>
+							<p class="small text-secondary mb-3">Charcoal dark-mode background with emerald accents and JetBrains Mono font.</p>
+						</div>
+						<button class="btn btn-outline-info w-100 btn-sm fw-semibold preview-btn" data-template="tpl-tech-2" data-title="Cyber Terminal">Preview & Edit</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- 5. Creative Coral & Sand -->
+			<div class="col-12 col-md-6 col-lg-3 template-item" data-category="creative">
+				<div class="template-card h-100 d-flex flex-column">
+					<div class="cv-thumbnail theme-creative-coral" id="tpl-creative-1">
+						<div class="cv-banner">
+							<strong style="font-size: 0.95rem;">ROHAN VERMA</strong><br>
+							<span>UI/UX & Brand Designer</span>
+						</div>
+						<h6>About Me</h6>
+						<p class="mb-1">Human-centered designer turning complex user flows into joyful products.</p>
+						<h6>Selected Work</h6>
+						<p class="mb-1"><strong>Lead Designer — PixelStudio</strong><br>• Redesigned mobile checkout, boosting conversion by 24%.</p>
+						<h6>Toolkit</h6>
+						<p class="mb-0">Figma • Framer • After Effects • Webflow</p>
+					</div>
+					<div class="p-3 d-flex flex-column flex-grow-1 justify-content-between">
+						<div>
+							<span class="badge bg-warning text-dark mb-2">Creative • Warm Sand</span>
+							<h5 class="fw-bold mb-1">Coral Sunset</h5>
+							<p class="small text-secondary mb-3">Warm cream paper background with a vibrant coral gradient banner and Poppins font.</p>
+						</div>
+						<button class="btn btn-outline-info w-100 btn-sm fw-semibold preview-btn" data-template="tpl-creative-1" data-title="Coral Sunset">Preview & Edit</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- 6. Creative Indigo Studio -->
+			<div class="col-12 col-md-6 col-lg-3 template-item" data-category="creative">
+				<div class="template-card h-100 d-flex flex-column">
+					<div class="cv-thumbnail theme-creative-indigo" id="tpl-creative-2">
+						<div>
+							<strong style="font-size: 0.95rem; color: #312e81;">SNEHA KAPOOR</strong><br>
+							<span style="color: #4f46e5; font-weight: 600;">Content Strategist & Copywriter</span>
+						</div>
+						<h6>Creative Bio</h6>
+						<p class="mb-1">Storyteller crafting viral B2C brand campaigns and high-converting landing pages.</p>
+						<h6>Campaign Highlights</h6>
+						<p class="mb-1"><strong>Brand Lead — ZestMedia</strong><br>• Scaled organic Instagram & YouTube reach to 2.5M views.</p>
+						<h6>Skills</h6>
+						<p class="mb-0">Brand Voice • SEO • Scriptwriting</p>
+					</div>
+					<div class="p-3 d-flex flex-column flex-grow-1 justify-content-between">
+						<div>
+							<span class="badge bg-warning text-dark mb-2">Creative • Soft Lavender</span>
+							<h5 class="fw-bold mb-1">Indigo Studio</h5>
+							<p class="small text-secondary mb-3">Soft lavender-tinted canvas with bold royal indigo typography for marketers and writers.</p>
+						</div>
+						<button class="btn btn-outline-info w-100 btn-sm fw-semibold preview-btn" data-template="tpl-creative-2" data-title="Indigo Studio">Preview & Edit</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- 7. Executive Emerald & Ivory -->
+			<div class="col-12 col-md-6 col-lg-3 template-item" data-category="executive">
+				<div class="template-card h-100 d-flex flex-column">
+					<div class="cv-thumbnail theme-exec-emerald" id="tpl-exec-1">
+						<div class="exec-header">
+							<strong style="font-size: 0.95rem; letter-spacing: 0.5px;">DR. ARJUN MENON</strong><br>
+							<span style="font-size: 0.65rem; color: #a7f3d0;">VP of Strategy & Corporate Finance</span>
+						</div>
+						<h6>Executive Profile</h6>
+						<p class="mb-1">12+ years leading M&A transactions and P&L growth across APAC markets.</p>
+						<h6>Leadership</h6>
+						<p class="mb-1"><strong>Director — Apex Capital</strong> (2021–Present)<br>• Managed ₹450 Cr portfolio with 22% YoY return.</p>
+						<h6>Credentials</h6>
+						<p class="mb-0">CFA Charterholder • MBA, ISB Hyderabad</p>
+					</div>
+					<div class="p-3 d-flex flex-column flex-grow-1 justify-content-between">
+						<div>
+							<span class="badge bg-danger mb-2">Executive • Ivory & Emerald</span>
+							<h5 class="fw-bold mb-1">Emerald Boardroom</h5>
+							<p class="small text-secondary mb-3">Warm ivory paper with a deep emerald header and editorial Playfair Display headings.</p>
+						</div>
+						<button class="btn btn-outline-info w-100 btn-sm fw-semibold preview-btn" data-template="tpl-exec-1" data-title="Emerald Boardroom">Preview & Edit</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- 8. Fresher Sky Minimal -->
+			<div class="col-12 col-md-6 col-lg-3 template-item" data-category="fresher">
+				<div class="template-card h-100 d-flex flex-column">
+					<div class="cv-thumbnail theme-fresher-sky" id="tpl-fresher-1">
+						<div>
+							<strong style="font-size: 0.95rem; color: #0f172a;">ANANYA IYER</strong><br>
+							<span class="text-muted">B.E. Computer Science (2026 Batch) • CGPA: 9.1</span>
+						</div>
+						<h6>Career Objective</h6>
+						<p class="mb-1">Motivated CS graduate eager to contribute to full-stack web engineering teams.</p>
+						<h6>Academic Projects</h6>
+						<p class="mb-1"><strong>Smart Attendance AI</strong> — Python, OpenCV & Flask web portal.</p>
+						<h6>Internships</h6>
+						<p class="mb-0">Frontend Intern @ TechStart (Summer 2026)</p>
+					</div>
+					<div class="p-3 d-flex flex-column flex-grow-1 justify-content-between">
+						<div>
+							<span class="badge bg-success mb-2">Fresher • Clean Sky</span>
+							<h5 class="fw-bold mb-1">Graduate Launchpad</h5>
+							<p class="small text-secondary mb-3">Highlights CGPA, academic projects, and internships upfront with a clean sky-blue border.</p>
+						</div>
+						<button class="btn btn-outline-info w-100 btn-sm fw-semibold preview-btn" data-template="tpl-fresher-1" data-title="Graduate Launchpad">Preview & Edit</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Interactive Template Preview & Quick-Edit Modal -->
+	<div class="modal fade" id="templateModal" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content bg-dark text-light border-secondary">
+				<div class="modal-header border-secondary">
+					<h5 class="modal-title text-info fw-bold" id="modalTemplateTitle">Template Preview</h5>
+					<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p class="small text-secondary mb-2">Click anywhere inside the CV below to customize your name, role, and details before saving as PDF:</p>
+					<div id="modalPreviewContainer" class="cv-full-paper shadow" contenteditable="true"></div>
+				</div>
+				<div class="modal-footer border-secondary">
+					<button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-info fw-semibold" onclick="window.print()">Print / Save as PDF</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			// Category Filter Logic
+			const filterButtons = document.querySelectorAll(".filter-btn");
+			const templateItems = document.querySelectorAll(".template-item");
+
+			filterButtons.forEach(btn => {
+				btn.addEventListener("click", () => {
+					filterButtons.forEach(b => {
+						b.classList.remove("btn-info", "active");
+						b.classList.add("btn-outline-info");
+					});
+					btn.classList.remove("btn-outline-info");
+					btn.classList.add("btn-info", "active");
+
+					const selected = btn.getAttribute("data-category");
+					templateItems.forEach(item => {
+						if (selected === "all" || item.getAttribute("data-category") === selected) {
+							item.classList.remove("d-none");
+						} else {
+							item.classList.add("d-none");
+						}
+					});
+				});
+			});
+
+			// Preview & Edit Modal Logic
+			const previewButtons = document.querySelectorAll(".preview-btn");
+			const modalTitle = document.getElementById("modalTemplateTitle");
+			const modalContainer = document.getElementById("modalPreviewContainer");
+			const templateModal = new bootstrap.Modal(document.getElementById("templateModal"));
+
+			previewButtons.forEach(btn => {
+				btn.addEventListener("click", () => {
+					const tplId = btn.getAttribute("data-template");
+					const title = btn.getAttribute("data-title");
+					const sourceEl = document.getElementById(tplId);
+
+					modalTitle.textContent = `${title} — Live Editable Preview`;
+					modalContainer.className = `cv-full-paper shadow ${sourceEl.className.replace("cv-thumbnail", "")}`;
+					modalContainer.innerHTML = sourceEl.innerHTML;
+
+					templateModal.show();
+				});
+			});
+		});
+	</script>
+</body>
+</html>
