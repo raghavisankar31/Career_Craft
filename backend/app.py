@@ -49,5 +49,30 @@ def dbtest():
             "error": str(e)
         })
 
+@app.route("/login", methods=["POST"])
+def login():
+
+    data = request.json
+
+    user = users_collection.find_one({
+        "email": data["email"]
+    })
+
+    if not user:
+
+        return jsonify({
+            "message": "User Not Found"
+        })
+
+    if user["password"] == data["password"]:
+
+        return jsonify({
+            "message": "Login Successful"
+        })
+
+    return jsonify({
+        "message": "Invalid Password"
+    })
+
 if __name__ == "__main__":
     app.run(debug=True)
