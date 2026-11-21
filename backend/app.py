@@ -1,6 +1,10 @@
 from flask import Flask, jsonify, request
 from pymongo import MongoClient
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
+
 client = MongoClient("mongodb+srv://careercraft_rag:CareerCraftDB2026@raghavi.nir5itj.mongodb.net/")
 db = client["careercraftDB"]
 
@@ -22,6 +26,16 @@ def student():
 def register():
 
     data = request.json
+
+    existing_user = users_collection.find_one({
+        "email": data["email"]
+    })
+
+    if existing_user:
+
+        return jsonify({
+            "message": "Email already exists"
+        })
 
     users_collection.insert_one({
         "email": data["email"],
@@ -75,4 +89,4 @@ def login():
     })
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)
