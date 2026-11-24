@@ -4,5 +4,5 @@ AI-powered resume generation platform.
 
 Team Members:
 - Raghavi.S
-- Rangasri.GK
-- Rithul
+- Rangasri.G
+- Rithul Srinivasan
