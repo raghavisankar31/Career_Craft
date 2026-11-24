@@ -1,131 +1,236 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
-     <meta name="viewport" content="width=device-width,initial-scale=1">
-	<title> Automated CV Creating Assistant </title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Automated CV Creating Assistant - CareerCraft</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+	<style>
+		/* Enable smooth scrolling across the entire page */
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			background: linear-gradient(rgba(10, 12, 16, 0.78), rgba(10, 12, 16, 0.88)), url('images/bg.jpg');
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			min-height: 100vh;
+			color: #f8f9fa;
+		}
+
+		.modern-navbar {
+			background: rgba(18, 22, 30, 0.82);
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+			border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		}
+
+		.top-dropdown-drawer {
+			background: linear-gradient(180deg, #11151c 0%, #1a202c 100%);
+			border-bottom: 1px solid rgba(56, 189, 248, 0.3);
+			height: auto !important;
+			padding-bottom: 1.5rem;
+		}
+
+		.drawer-link {
+			color: #cbd5e1;
+			font-size: 1.15rem;
+			font-weight: 500;
+			padding: 0.75rem 1.25rem;
+			border-radius: 0.5rem;
+			transition: all 0.2s ease;
+			text-decoration: none;
+			display: block;
+		}
+
+		.drawer-link:hover, .drawer-link.active {
+			background: rgba(56, 189, 248, 0.15);
+			color: #38bdf8;
+			transform: translateX(4px);
+		}
+
+		.glass-card {
+			background: rgba(24, 29, 39, 0.88);
+			backdrop-filter: blur(10px);
+			border: 1px solid rgba(255, 255, 255, 0.12);
+			color: #f8f9fa;
+		}
+	</style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-md bg-info" data-bs-theme="light">
-		<div class="container-fluid">
-			<img src="images/CareerCraft.png" class="navbar-brand" width="200" alt="CareerCraft">
-			<button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-label="Toggle menu">
-				<span class="navbar-toggler-icon"></span>
+
+	<!-- Sleek Top Header Bar -->
+	<nav class="navbar modern-navbar sticky-top py-2">
+		<div class="container">
+			<a class="navbar-brand d-flex align-items-center" href="#">
+				<img src="images/CareerCraft.png" width="180" alt="CareerCraft">
+			</a>
+
+			<button class="btn btn-outline-info d-flex align-items-center gap-2 px-3 py-2" 
+					type="button" 
+					data-bs-toggle="offcanvas" 
+					data-bs-target="#topDropdownMenu" 
+					aria-controls="topDropdownMenu">
+				<span class="fw-semibold">Menu</span>
+				<span class="navbar-toggler-icon" style="filter: invert(1); width: 1.1em; height: 1.1em;"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="menu">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link active" href="#Introduction">About Us</a></li>
-					<li class="nav-item"><a class="nav-link" href="#Registration">Register Now</a></li>		
-				</ul>
-			</div>	
 		</div>
 	</nav>
-	<div id="Introduction" class="align-items-center">
-		<h2 class="text-dark text-center fst-italic">About Us</h2>
-		<p class="text-dark text-center fw-bold">CareerCraft helps you turn your work experience, skills, and education into a clear, professional CV. 
-							 Whether you are applying for your first job, looking for a new opportunity, or updating an older CV, 
-							 CareerCraft guides you through the process one step at a time.<br><br>
-							 Enter your details, choose the kind of role you want, and CareerCraft can help organize your information 
-							 into a polished draft. It can also help improve the wording of your experience so employers can quickly 
-							 understand what you have done and what you can offer. You stay in control: review every section, make changes, 
-							 and check that all the details are correct before using your CV.<br><br>
-							 You can start by typing your information or pasting details from your LinkedIn profile. CareerCraft uses what 
-							 you provide to create a draft; it should never add jobs, skills, or qualifications you don’t have.<br><br>
-							 Our goal is to make CV writing feel simpler and less stressful. CareerCraft gives you a helpful starting point, 
-							 so you can spend less time worrying about formatting and more time preparing for the opportunities ahead.</p>
-	</div>
-	<br><br>
-	<div id="Registration" class="align-items-center">
-		<div class="container col-12 col-lg-6 mb-5">
-			<div class="card mx-auto">
-				<div class="card-body">
-					<h3 class="h4 mb-3 fst-italic text-center">Registration:</h3>
-					<form id="order-form" class="needs-validation">
-						<div class="mb-3">
-							<label for="user-email" class="form-label">Email:</label>
-							<input type="email" class="form-control" id="user-email" placeholder="Enter your email" required>
-							<div class="invalid-feedback">Please enter your name.</div>
-						</div>
-						<div class="mb-3">
-							<label for="username" class="form-label">Username:</label>
-							<input type="text" class="form-control" id="username" placeholder="Enter your username" minlength="5" required>
-							<div class="form-text">Enter atleast 5 characters</div>
-							<div class="invalid-feedback">Enter a valid username</div>
-						</div>
-						<div class="mb-3">
-							<label for="password" class="form-label">Password:</label>
-							<input type="password" class="form-control" id="password" placeholder="Enter your password" minlength="8" required>
-							<div class="form-text">Enter atleast 8 characters</div>
-							<div class="invalid-feedback">Please enter your password</div>
-						</div>
-						<button id="Register" type="submit" class="btn btn-info">
-							<span	id="order-spinner"	class="spinner-border spinner-border-sm me-2 d-none" aria-hidden="true"></span>
-							<span id="order-button-text">Register</span>
-						</button>
-						<button type="reset" class="btn btn-outline-secondary">Clear</button>
-					</form>
+
+	<!-- Slide-Down Top Menu -->
+	<div class="offcanvas offcanvas-top top-dropdown-drawer text-light" tabindex="-1" id="topDropdownMenu" aria-labelledby="topDropdownLabel">
+		<div class="container">
+			<div class="offcanvas-header px-0 border-bottom border-secondary border-opacity-25">
+				<h5 class="offcanvas-title text-info fw-bold" id="topDropdownLabel">Navigation</h5>
+				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body px-0 pt-3">
+				<div class="row g-2">
+					<div class="col-12 col-md-4">
+						<a class="drawer-link active" href="#Introduction">About Us</a>
+					</div>
+					<div class="col-12 col-md-4">
+						<!-- This link triggers smooth scrolling down to the registration section -->
+						<a class="drawer-link" href="#Registration">Register Now</a>
+					</div>
+					<div class="col-12 col-md-4">
+						<a class="drawer-link" href="templates.html">Explore CV Templates & AI Builder →</a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<!-- About Us Section -->
+	<div id="Introduction" class="container py-5">
+		<div class="row justify-content-center">
+			<div class="col-12 col-lg-9 text-center">
+				<h2 class="text-info fw-bold mb-4">About Us</h2>
+				<p class="lead fs-6 text-light opacity-90 lh-lg">
+					CareerCraft helps you turn your work experience, skills, and education into a clear, professional CV. 
+					Whether you are applying for your first job, looking for a new opportunity, or updating an older CV, 
+					CareerCraft guides you through the process one step at a time.<br><br>
+					Enter your details, choose the kind of role you want, and CareerCraft can help organize your information 
+					into a polished draft. Visit our <a href="templates.html" class="text-info text-decoration-underline">Templates & AI Builder page</a> to explore layouts and generate your resume!
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Registration Section with matching ID for smooth scrolling anchor -->
+	<div id="Registration" class="container pb-5 mb-5 pt-4">
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-8 col-lg-6">
+				<div class="card glass-card shadow-lg rounded-4">
+					<div class="card-body p-4 p-md-5">
+						<h3 class="h4 mb-4 fw-bold text-center text-info">Create Your Account</h3>
+						<form id="order-form" class="needs-validation" novalidate>
+							<div class="mb-3">
+								<label for="user-email" class="form-label">Email:</label>
+								<input type="email" class="form-control bg-dark text-light border-secondary" id="user-email" placeholder="Enter your email" required>
+								<div class="invalid-feedback">Please enter a valid email address.</div>
+							</div>
+							<div class="mb-3">
+								<label for="username" class="form-label">Username:</label>
+								<input type="text" class="form-control bg-dark text-light border-secondary" id="username" placeholder="Enter your username" minlength="5" required>
+								<div class="form-text text-secondary">Enter at least 5 characters</div>
+								<div class="invalid-feedback">Enter a valid username (min 5 characters).</div>
+							</div>
+							<div class="mb-4">
+								<label for="password" class="form-label">Password:</label>
+								<input type="password" class="form-control bg-dark text-light border-secondary" id="password" placeholder="Enter your password" minlength="8" required>
+								<div class="form-text text-secondary">Enter at least 8 characters</div>
+								<div class="invalid-feedback">Please enter a password (min 8 characters).</div>
+							</div>
+							<div class="d-flex gap-2">
+								<button id="Register" type="submit" class="btn btn-info fw-semibold px-4">
+									<span id="register-spinner" class="spinner-border spinner-border-sm me-2 d-none" aria-hidden="true"></span>
+									<span id="register-button-text">Register</span>
+								</button>
+								<button type="reset" class="btn btn-outline-light">Clear</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
 		document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("order-form");
-  const emailInput = document.getElementById("user-email");
-  const usernameInput = document.getElementById("username");
-  const passwordInput = document.getElementById("password");
-  const submitButton = document.getElementById("Register");
-  const spinner = document.getElementById("order-spinner");
-  const buttonText = document.getElementById("order-button-text");
+			const form = document.getElementById("order-form");
+			const emailInput = document.getElementById("user-email");
+			const usernameInput = document.getElementById("username");
+			const passwordInput = document.getElementById("password");
+			const submitButton = document.getElementById("Register");
+			const spinner = document.getElementById("register-spinner");
+			const buttonText = document.getElementById("register-button-text");
 
-  if (!form || !emailInput || !usernameInput || !passwordInput) {
-    console.error("Registration form elements were not found.");
-    return;
-  }
+			// Ensure offcanvas drawer closes smoothly when clicking any anchor link
+			const topDrawerEl = document.getElementById("topDropdownMenu");
+			const drawerLinks = document.querySelectorAll(".drawer-link[href^='#']");
+			drawerLinks.forEach(link => {
+				link.addEventListener("click", () => {
+					const bsOffcanvas = bootstrap.Offcanvas.getInstance(topDrawerEl);
+					if (bsOffcanvas) bsOffcanvas.hide();
+				});
+			});
 
-  // The browser's built-in checks cover required fields, email format,
-  // and the minlength attributes in your HTML.
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
+			if (form && emailInput && usernameInput && passwordInput) {
+				form.addEventListener("submit", (event) => {
+					event.preventDefault();
+					if (!form.checkValidity()) {
+						event.stopPropagation();
+						form.classList.add("was-validated");
+						form.reportValidity();
+						return;
+					}
+					form.classList.add("was-validated");
+					submitButton.disabled = true;
+					spinner?.classList.remove("d-none");
+					if (buttonText) buttonText.textContent = "Registering…";
 
-    if (!form.checkValidity()) {
-      event.stopPropagation();
-      form.classList.add("was-validated");
-      form.reportValidity();
-      return;
-    }
+					window.setTimeout(() => {
+						spinner?.classList.add("d-none");
+						if (buttonText) buttonText.textContent = "Register";
+						submitButton.disabled = false;
 
-    form.classList.add("was-validated");
+						fetch("http://127.0.0.1:5000/register", {
+							method: "POST",
+							headers: { "Content-Type": "application/json" },
+							body: JSON.stringify({
+								email: emailInput.value.trim(),
+								username: usernameInput.value.trim(),
+								password: passwordInput.value.trim()
+							})
+						})
+						.then(response => response.json())
+						.then(data => {
+							alert(data.message);
+							form.reset();
+							form.classList.remove("was-validated");
+						})
+						.catch(error => {
+							console.error(error);
+							alert("Backend connection failed");
+						});
+					}, 800);
+				});
 
-    // This is only a front-end demonstration. Connect this section to a
-    // server endpoint to actually register and store an account.
-    submitButton.disabled = true;
-    spinner?.classList.remove("d-none");
-    if (buttonText) buttonText.textContent = "Registering…";
-
-    window.setTimeout(() => {
-      spinner?.classList.add("d-none");
-      if (buttonText) buttonText.textContent = "Register";
-      submitButton.disabled = false;
-
-      alert(`Registration form is valid for ${emailInput.value.trim()}.`);
-      form.reset();
-      form.classList.remove("was-validated");
-    }, 800);
-  });
-
-  form.addEventListener("reset", () => {
-    // Let the browser reset the fields first, then clear validation styling.
-    window.setTimeout(() => {
-      form.classList.remove("was-validated");
-      spinner?.classList.add("d-none");
-      if (buttonText) buttonText.textContent = "Register";
-      if (submitButton) submitButton.disabled = false;
-    }, 0);
-  });
-});
-</script>
+				form.addEventListener("reset", () => {
+					window.setTimeout(() => {
+						form.classList.remove("was-validated");
+						spinner?.classList.add("d-none");
+						if (buttonText) buttonText.textContent = "Register";
+						if (submitButton) submitButton.disabled = false;
+					}, 0);
+				});
+			}
+		});
+	</script>
 </body>
 </html>
