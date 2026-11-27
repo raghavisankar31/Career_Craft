@@ -14,8 +14,10 @@ users_collection = db["users"]
 
 # Initialize Google GenAI Client
 # (Make sure your GEMINI_API_KEY environment variable is set in your terminal)
-ai_client = genai.Client()
-
+try:
+    ai_client = genai.Client()
+except:
+    ai_client = None
 @app.route("/")
 def home():
     return "Backend Running Successfully"
@@ -97,20 +99,32 @@ def generate_resume():
 
         # System prompt instructing Gemini to format the resume with clean inline design styles
         prompt = f"""
-        You are an expert professional CV writer and web designer. 
-        Convert the raw LinkedIn data below into a fully styled, beautifully designed HTML resume snippet.
-        
-        Selected Template Theme: {template_style}
-        
-        Formatting & Design Rules:
-        1. Return ONLY valid HTML elements (like <h2>, <h3>, <p>, <ul>, <li>, <strong>) wrapped inside a clean container div.
-        2. Apply inline CSS styles (such as matching color themes, proper padding, clean font families, and subtle borders) so it looks like a professional, print-ready document immediately.
-        3. Organize into clear sections: Contact/Header, Summary, Experience, Skills, and Education.
-        4. Do NOT include markdown code blocks (like ```html) in your response; return raw HTML string content directly.
-        
-        Raw LinkedIn Data:
-        {linkedin_text}
-        """
+You are an expert Human Resources professional, resume writer, and ATS optimization specialist.
+
+Your task is to transform raw user information into a highly professional resume.
+
+Instructions:
+
+1. Correct grammar, spelling mistakes, and sentence structure.
+2. Rewrite informal language into professional resume language.
+3. Remove unnecessary, personal, casual, repetitive, or irrelevant information.
+4. Use strong action-oriented resume wording.
+5. Organize the content into:
+   - Professional Summary
+   - Skills
+   - Experience
+   - Education
+   - Projects
+6. Make the resume ATS-friendly.
+7. Never invent qualifications, skills, jobs, or certifications.
+8. Return only valid HTML with inline CSS styling.
+
+Selected Template:
+{template_style}
+
+Raw User Information:
+{linkedin_text}
+"""
 
         # Using gemini-3.8-flash for rapid response generation
         response = ai_client.models.generate_content(
