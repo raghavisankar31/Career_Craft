@@ -3,11 +3,15 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>Automated CV Creating Assistant</title>
+	<title>Automated CV Creating Assistant - CareerCraft</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 	<style>
+		/* Enable smooth scrolling across the entire page */
+		html {
+			scroll-behavior: smooth;
+		}
+
 		body {
-			/* Subtle dark gradient over bg.jpg ensures light text is always readable */
 			background: linear-gradient(rgba(10, 12, 16, 0.78), rgba(10, 12, 16, 0.88)), url('images/bg.jpg');
 			background-size: cover;
 			background-position: center;
@@ -17,7 +21,6 @@
 			color: #f8f9fa;
 		}
 
-		/* Modern Sleek Glass Navbar */
 		.modern-navbar {
 			background: rgba(18, 22, 30, 0.82);
 			backdrop-filter: blur(12px);
@@ -25,11 +28,10 @@
 			border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 		}
 
-		/* Top Dropdown Drawer Styling */
 		.top-dropdown-drawer {
 			background: linear-gradient(180deg, #11151c 0%, #1a202c 100%);
 			border-bottom: 1px solid rgba(56, 189, 248, 0.3);
-			height: auto !important; /* Fits content cleanly instead of taking half the screen */
+			height: auto !important;
 			padding-bottom: 1.5rem;
 		}
 
@@ -50,7 +52,6 @@
 			transform: translateX(4px);
 		}
 
-		/* Modern Dark Card for Registration */
 		.glass-card {
 			background: rgba(24, 29, 39, 0.88);
 			backdrop-filter: blur(10px);
@@ -68,7 +69,6 @@
 				<img src="images/CareerCraft.png" width="180" alt="CareerCraft">
 			</a>
 
-			<!-- Dropdown Trigger Button -->
 			<button class="btn btn-outline-info d-flex align-items-center gap-2 px-3 py-2" 
 					type="button" 
 					data-bs-toggle="offcanvas" 
@@ -80,7 +80,7 @@
 		</div>
 	</nav>
 
-	<!-- Modern Slide-Down Top Menu -->
+	<!-- Slide-Down Top Menu -->
 	<div class="offcanvas offcanvas-top top-dropdown-drawer text-light" tabindex="-1" id="topDropdownMenu" aria-labelledby="topDropdownLabel">
 		<div class="container">
 			<div class="offcanvas-header px-0 border-bottom border-secondary border-opacity-25">
@@ -93,11 +93,11 @@
 						<a class="drawer-link active" href="#Introduction">About Us</a>
 					</div>
 					<div class="col-12 col-md-4">
+						<!-- This link triggers smooth scrolling down to the registration section -->
 						<a class="drawer-link" href="#Registration">Register Now</a>
 					</div>
 					<div class="col-12 col-md-4">
-						<!-- Link this to your second HTML page when ready -->
-						<a class="drawer-link" href="templates.html">Explore CV Templates &rarr;</a>
+						<a class="drawer-link" href="templates.html">Explore CV Templates & AI Builder →</a>
 					</div>
 				</div>
 			</div>
@@ -114,20 +114,14 @@
 					Whether you are applying for your first job, looking for a new opportunity, or updating an older CV, 
 					CareerCraft guides you through the process one step at a time.<br><br>
 					Enter your details, choose the kind of role you want, and CareerCraft can help organize your information 
-					into a polished draft. It can also help improve the wording of your experience so employers can quickly 
-					understand what you have done and what you can offer. You stay in control: review every section, make changes, 
-					and check that all the details are correct before using your CV.<br><br>
-					You can start by typing your information or pasting details from your LinkedIn profile. CareerCraft uses what 
-					you provide to create a draft; it should never add jobs, skills, or qualifications you don’t have.<br><br>
-					Our goal is to make CV writing feel simpler and less stressful. CareerCraft gives you a helpful starting point, 
-					so you can spend less time worrying about formatting and more time preparing for the opportunities ahead.
+					into a polished draft. Visit our <a href="templates.html" class="text-info text-decoration-underline">Templates & AI Builder page</a> to explore layouts and generate your resume!
 				</p>
 			</div>
 		</div>
 	</div>
 
-	<!-- Registration Section -->
-	<div id="Registration" class="container pb-5">
+	<!-- Registration Section with matching ID for smooth scrolling anchor -->
+	<div id="Registration" class="container pb-5 mb-5 pt-4">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-8 col-lg-6">
 				<div class="card glass-card shadow-lg rounded-4">
@@ -176,7 +170,7 @@
 			const spinner = document.getElementById("register-spinner");
 			const buttonText = document.getElementById("register-button-text");
 
-			// Auto-close the top dropdown drawer when an in-page link is clicked
+			// Ensure offcanvas drawer closes smoothly when clicking any anchor link
 			const topDrawerEl = document.getElementById("topDropdownMenu");
 			const drawerLinks = document.querySelectorAll(".drawer-link[href^='#']");
 			drawerLinks.forEach(link => {
@@ -237,14 +231,15 @@
 				}
 			});
 
-			form.addEventListener("reset", () => {
-				window.setTimeout(() => {
-					form.classList.remove("was-validated");
-					spinner?.classList.add("d-none");
-					if (buttonText) buttonText.textContent = "Register";
-					if (submitButton) submitButton.disabled = false;
-				}, 0);
-			});
+				form.addEventListener("reset", () => {
+					window.setTimeout(() => {
+						form.classList.remove("was-validated");
+						spinner?.classList.add("d-none");
+						if (buttonText) buttonText.textContent = "Register";
+						if (submitButton) submitButton.disabled = false;
+					}, 0);
+				});
+			
 		});
 	</script>
 </body>
