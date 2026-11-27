@@ -517,7 +517,7 @@
 					genSpinner.classList.remove("d-none");
 					previewBox.innerHTML = "<span class='text-muted'>AI is designing your styled resume... Please wait.</span>";
 
-					fetch("\https://career-craft-vjf6.onrender.com/generate-resume", {
+					fetch("https://career-craft-vjf6.onrender.com", {
 						method: "POST",
 						headers: { "Content-Type": "application/json" },
 						body: JSON.stringify({
