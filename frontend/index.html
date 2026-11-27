@@ -191,7 +191,7 @@
 				return;
 			}
 
-			form.addEventListener("submit", (event) => {
+			form.addEventListener("submit", async (event) => {
 				event.preventDefault();
 
 				if (!form.checkValidity()) {
@@ -207,15 +207,34 @@
 				spinner?.classList.remove("d-none");
 				if (buttonText) buttonText.textContent = "Registering…";
 
-				window.setTimeout(() => {
+				try {
+					const response = await fetch("https://onrender.com", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							email: emailInput.value.trim(),
+							username: usernameInput.value.trim(),
+							password: passwordInput.value
+						})
+					});
+
+					const data = await response.json();
+					alert(data.message);
+
+					if (data.message === "User Registered Successfully") {
+						form.reset();
+						form.classList.remove("was-validated");
+					}
+				} catch (error) {
+					console.error("Registration error:", error);
+					alert("Could not connect to the server. Please try again in a few seconds.");
+				} finally {
 					spinner?.classList.add("d-none");
 					if (buttonText) buttonText.textContent = "Register";
 					submitButton.disabled = false;
-
-					alert(`Registration form is valid for ${emailInput.value.trim()}.`);
-					form.reset();
-					form.classList.remove("was-validated");
-				}, 800);
+				}
 			});
 
 			form.addEventListener("reset", () => {
