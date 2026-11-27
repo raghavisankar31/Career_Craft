@@ -1,6 +1,6 @@
 # Career Craft
 
-AI-powered resume generation platform.
+AI-powered CV generation platform.
 
 Team Members:
 - Raghavi.S
